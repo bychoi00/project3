@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -26,35 +27,40 @@ public class CalcActivity extends AppCompatActivity {
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if((editMonthMoney.getText().toString() != null) &&
+                        (editMonths.getText().toString() != null) &&
+                        (editRate.getText().toString() != null)){
+                    String monthMoney = editMonthMoney.getText().toString();
+                    String months = editMonths.getText().toString();
+                    String rate = editRate.getText().toString();
 
-                String monthMoney = editMonthMoney.getText().toString();
-                String months = editMonths.getText().toString();
-                String rate = editRate.getText().toString();
+                    int origin;
+                    int rawresult;
+                    int interNormal;
+                    int interPre1;
+                    int interPre2;
+                    int interNo;
 
-                int origin;
-                int rawresult;
-                int interNormal;
-                int interPre1;
-                int interPre2;
-                int interNo;
+                    DepositCalc depositCalc = new DepositCalc();
+                    origin = depositCalc.originCalc(monthMoney,months);
+                    rawresult = depositCalc.simpleCalc(monthMoney,months,rate);
+                    interNormal = depositCalc.normaltax(rawresult);
+                    interPre1 = depositCalc.pre1tax(rawresult);
+                    interPre2 = depositCalc.pre2tax(rawresult);
+                    interNo = depositCalc.notax(rawresult);
 
-                DepositCalc depositCalc = new DepositCalc();
-                origin = depositCalc.originCalc(monthMoney,months);
-                rawresult = depositCalc.simpleCalc(monthMoney,months,rate);
-                interNormal = depositCalc.normaltax(rawresult);
-                interPre1 = depositCalc.pre1tax(rawresult);
-                interPre2 = depositCalc.pre2tax(rawresult);
-                interNo = depositCalc.notax(rawresult);
-
-                normalTotal.setText(getFormatDEC(String.valueOf(origin+interNormal)));
-                normalInterTotal.setText(getFormatDEC(String.valueOf(interNormal)));
-                pre1Total.setText(getFormatDEC(String.valueOf(origin+interPre1)));
-                pre1InterTotal.setText(getFormatDEC(String.valueOf(interPre1)));
-                pre2Total.setText(getFormatDEC(String.valueOf(origin+interPre2)));
-                pre2InterTotal.setText(getFormatDEC(String.valueOf(interPre2)));
-                noTotal.setText(getFormatDEC(String.valueOf(origin+interNo)));
-                noInterTotal.setText(getFormatDEC(String.valueOf(interNo)));
-
+                    normalTotal.setText(getFormatDEC(String.valueOf(origin+interNormal)));
+                    normalInterTotal.setText(getFormatDEC(String.valueOf(interNormal)));
+                    pre1Total.setText(getFormatDEC(String.valueOf(origin+interPre1)));
+                    pre1InterTotal.setText(getFormatDEC(String.valueOf(interPre1)));
+                    pre2Total.setText(getFormatDEC(String.valueOf(origin+interPre2)));
+                    pre2InterTotal.setText(getFormatDEC(String.valueOf(interPre2)));
+                    noTotal.setText(getFormatDEC(String.valueOf(origin+interNo)));
+                    noInterTotal.setText(getFormatDEC(String.valueOf(interNo)));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"모든 항목을 기재해주세요.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
