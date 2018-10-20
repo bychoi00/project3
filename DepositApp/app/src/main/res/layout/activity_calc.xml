@@ -32,6 +32,8 @@
             android:layout_width="200dp"
             android:layout_row="0"
             android:layout_column="1"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
             android:textAlignment="textEnd"
             android:textSize="18sp" />
 
@@ -52,6 +54,8 @@
             android:layout_width="200dp"
             android:layout_row="1"
             android:layout_column="1"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
             android:textAlignment="textEnd"
             android:textSize="18sp" />
 
@@ -73,6 +77,8 @@
             android:layout_row="2"
             android:layout_column="1"
             android:hint="연 이자율"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
             android:textAlignment="textEnd"
             android:textSize="18sp" />
 
@@ -173,6 +179,7 @@
                 android:text="일반(15.4%)" />
 
             <TextView
+                android:id="@+id/normaltaxTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -180,10 +187,10 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
 
             <TextView
+                android:id="@+id/normaltaxInterTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -191,8 +198,7 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
         </TableRow>
 
         <TableRow
@@ -211,6 +217,7 @@
                 android:text="우대(9.5%)" />
 
             <TextView
+                android:id="@+id/pre1taxTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -218,10 +225,10 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
 
             <TextView
+                android:id="@+id/pre1taxInterTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -229,8 +236,7 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
         </TableRow>
 
         <TableRow
@@ -249,6 +255,7 @@
                 android:text="우대(1.4%)" />
 
             <TextView
+                android:id="@+id/pre2taxTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -256,10 +263,10 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
 
             <TextView
+                android:id="@+id/pre2InterTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -267,8 +274,7 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
         </TableRow>
 
         <TableRow
@@ -287,6 +293,7 @@
                 android:text="비과세(0%)" />
 
             <TextView
+                android:id="@+id/notaxTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -294,10 +301,10 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
 
             <TextView
+                android:id="@+id/noInterTotal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -305,8 +312,7 @@
                 android:layout_weight="2"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="100,000,000,000원" />
+                android:padding="3dp" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

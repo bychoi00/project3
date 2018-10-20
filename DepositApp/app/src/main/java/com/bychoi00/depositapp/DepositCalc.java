@@ -2,32 +2,52 @@ package com.bychoi00.depositapp;
 
 public class DepositCalc {
 
-    private float ratenormal = (float)0.154;
-    private float ratepre1 = (float)0.095;
-    private float ratepre2 = (float)0.014;
+    private double ratenormal = (double)0.154;
+    private double ratepre1 = (double)0.095;
+    private double ratepre2 = (double)0.014;
+
+    public int totalSum(String origin, String interest){
+        int origin1 = Integer.parseInt(origin);
+        int interest1 = Integer.parseInt(interest);
+        int result = origin1+interest1;
+
+        return result;
+    }
+
+    public int originCalc(String monthMoney, String months){
+        int result = Integer.parseInt(monthMoney)*Integer.parseInt(months);
+        return result;
+    }
 
     public int simpleCalc(String monthMoney, String months,String rate){
-        int mMoney = Integer.parseInt(monthMoney);
-        int mths = Integer.parseInt(months);
-        float rat = Float.parseFloat(rate);
+        double mMoney = Double.parseDouble(monthMoney);
+        double mths = Double.parseDouble(months);
+        double rat = Double.parseDouble(rate);
 
-        float result = (mMoney*mths*(mths+1)*rat)/(2*12*100);
-        return (int)result;
+        double result1 = (mMoney*mths*(mths+1)*rat)/(2*12*100);
+        long result2 = Math.round(result1);
+        return (int)result2;
     }
     public int compoundCalc(){
         return 1;
     }
     public int normaltax(int rawresult){
-        int result = (int)(rawresult*(1-ratenormal));
+        double temp = (double)(rawresult*(1-ratenormal));
+        long result1 = Math.round(temp);
+        int result = (int)result1;
         return result;
     }
     public int pre1tax(int rawresult){
-        int result = (int)(rawresult*(1-ratepre1));
+        double temp = (double) (rawresult*(1-ratepre1));
+        long result1 = Math.round(temp);
+        int result = (int)result1;
         return result;
 
     }
     public int pre2tax(int rawresult){
-        int result = (int)(rawresult*(1-ratepre2));
+        double temp = (double) (rawresult*(1-ratepre2));
+        long result1 = Math.round(temp);
+        int result = (int)result1;
         return result;
 
     }
