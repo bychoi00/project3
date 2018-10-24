@@ -13,21 +13,23 @@
         android:weightSum="10">
 
         <TextView
-            android:text="적 금 이 름 :"
-            android:layout_weight="3"
-            android:textSize="15sp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="적 금 이 름 :"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtDepositName"
-            android:text="test1"
-            android:layout_weight="7"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="7"
+            android:gravity="right"
+            android:text="test1"
+            android:textSize="15sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,21 +37,23 @@
         android:weightSum="10">
 
         <TextView
-            android:text="이 율 :"
-            android:layout_weight="3"
-            android:textSize="15sp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="이 율 :"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtRateName"
-            android:text="test2"
-            android:layout_weight="7"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="7"
+            android:gravity="right"
+            android:text="test2"
+            android:textSize="15sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,21 +61,47 @@
         android:weightSum="10">
 
         <TextView
-            android:text="기 간 :"
-            android:layout_weight="3"
-            android:textSize="15sp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="기 간 :"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txtDurationName"
-            android:text="test3"
-            android:layout_weight="7"
-            android:textSize="15sp"
-            android:gravity="center_horizontal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="7"
+            android:gravity="right"
+            android:text="test3"
+            android:textSize="15sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="현재 적금액 :"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_weight="7"
+            android:gravity="right"
+            android:text="test3"
+            android:textSize="15sp" />
+    </LinearLayout>
+
     <ProgressBar
         style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"

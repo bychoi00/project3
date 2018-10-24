@@ -14,10 +14,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private List<String> list;
+    private ArrayList<RecyclerItem> items;
     private RecyclerView recyclerView;
     private Button btnAdd, btnCalc, btnSendAll;
-
+    private MyAdapter myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,18 +27,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
         initListener();
 
-        list = new ArrayList<>();
-        list.add("적금1");
-        list.add("적금2");
-        list.add("적금3");
-        list.add("적금4");
-        list.add("적금5");
-        list.add("적금6");
-
+        items = new ArrayList<>();
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
+        items.add(new RecyclerItem("적금1","1.1","212121","1111111"));
 
         //init
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdapter(list));
+        myAdapter = new MyAdapter(items);
+        recyclerView.setAdapter(myAdapter);
     }
 
     private void initListener() {
