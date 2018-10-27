@@ -1,5 +1,7 @@
 package com.bychoi00.depositapp;
 
+import java.nio.DoubleBuffer;
+
 public class DepositCalc {
 
     private double ratenormal = (double)0.154;
@@ -28,8 +30,18 @@ public class DepositCalc {
         long result2 = Math.round(result1);
         return (int)result2;
     }
-    public int compoundCalc(){
-        return 1;
+    public int compoundCalc(String monthMoney, String months, String rate){
+        double mMoney = Double.parseDouble(monthMoney);
+        double mths = Double.parseDouble(months);
+        double rat = Double.parseDouble(rate);
+        double rat2 = rat/100;
+
+        double a = Math.pow((1+rat2),(1.0/12.0));
+        double result1 = mMoney*(a*(Math.pow(a,mths)-1))/(a-1);
+        double result2 = result1 - (mMoney*mths);
+        long result3 = Math.round(result2);
+
+        return (int)result3;
     }
     public int normaltax(int rawresult){
         double temp = (double)(rawresult*(1-ratenormal));
