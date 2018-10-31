@@ -21,7 +21,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText AddName, AddRate, AddStartDay, AddEndDay, AddMonthMoney, AddStartMoney, AddMemo;
     private Button AddButton, CancelButton;
     private RadioGroup RadioGroup1;
-    private String DepositCase = "Simple";
+    private String depositCase = "Simple";
     // Get Current Date
     private Calendar c = Calendar.getInstance();
     private int mYear = c.get(Calendar.YEAR);
@@ -68,12 +68,12 @@ public class AddActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.radioAdd1:
                         //단리
-                        DepositCase = "Simple";
+                        depositCase = "Simple";
                         break;
 
                     case R.id.radioAdd2:
                         //복리
-                        DepositCase = "Compound";
+                        depositCase = "Compound";
                         break;
                 }
             }
@@ -96,17 +96,15 @@ public class AddActivity extends AppCompatActivity {
                         //DB에 추가
                         DBHelper helper = new DBHelper(getApplicationContext());
                         SQLiteDatabase db = helper.getWritableDatabase();
-
                         ContentValues cv= new ContentValues();
-                        cv.put("NAME",AddName.getText().toString());
-                        cv.put("RATE",AddRate.getText().toString());
-                        cv.put("DEPOSIT_CASE",DepositCase);
-                        cv.put("DATE",AddStartDay.getText().toString()+"-"+AddEndDay.getText().toString());
-                        cv.put("MONTH_MONEY",AddMonthMoney.getText().toString());
-                        cv.put("TOTAL",AddStartMoney.getText().toString());
-                        cv.put("MEMO",AddMemo.getText().toString());
+                        cv.put("name",AddName.getText().toString());
+                        cv.put("rate",AddRate.getText().toString());
+                        cv.put("decase",depositCase);
+                        cv.put("date",AddStartDay.getText().toString()+"-"+AddEndDay.getText().toString());
+                        cv.put("mMoney",AddMonthMoney.getText().toString());
+                        cv.put("total",AddStartMoney.getText().toString());
+                        cv.put("memo",AddMemo.getText().toString());
                         db.insert("tb_deposit",null,cv);
-
                         Toast.makeText(getApplicationContext(), "항목이 추가되었습니다.", Toast.LENGTH_SHORT).show();
                         finish();
                     }catch (Exception e){

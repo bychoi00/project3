@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent2);
                 break;
             case R.id.buttonSendAll:
+                select();
                 Toast.makeText(this,"all 클릭",Toast.LENGTH_SHORT).show();
 
                 break;
@@ -89,19 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //DB에 추가
         DBHelper helper = new DBHelper(getApplicationContext());
         SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor c = db.rawQuery("select * from tb_deposit;", null);
-        while(c.moveToNext()) {
-            int id = c.getInt(0);
-            String name = c.getString(1);
-            String rate = c.getString(2);
-            String decase = c.getString(3);
-            String date = c.getString(4);
-            String mMoney = c.getString(5);
-            String total = c.getString(6);
-            String memo = c.getString(7);
+        Cursor cursor = null ;
+        cursor = db.rawQuery("select * from tb_deposit", null);
+        while(cursor.moveToNext()) {
+            String name = cursor.getString(0);
+            String rate = cursor.getString(1);
+            String decase = cursor.getString(2);
+            String date = cursor.getString(3);
+            String mMoney = cursor.getString(4);
+            String total = cursor.getString(5);
+            String memo = cursor.getString(6);
             Log.d("---","------------------------------------------");
             Log.d("TB_DEPOSIT",
-                    "id : "+id+"\n"+
                             "name : "+name+"\n"+
                             "rate : "+rate+"\n"+
                             "decase : "+decase+"\n"+
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             "mMoney : "+mMoney+"\n"+
                             "total : "+total+"\n"+
                             "memo : "+memo+"\n");
+            Toast.makeText(this, "TTTTTTTTTTTTTTTTTTTTTTT", Toast.LENGTH_SHORT).show();
         }
     }
    /* public void selectButtonClick(View v){   // 항상 DB문을 쓸때는 예외처리(try-catch)를 해야한다
