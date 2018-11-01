@@ -36,6 +36,7 @@
                         android:id="@+id/addName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
                         android:inputType="text"
                         android:maxLines="1" />
                 </TableRow>
@@ -54,6 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
                         android:maxLines="1" />
                 </TableRow>
 
@@ -131,6 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
                         android:maxLines="1" />
                 </TableRow>
 
@@ -146,6 +149,7 @@
                         android:id="@+id/addStartMoney"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
                         android:inputType="numberDecimal"
                         android:maxLines="1" />
                 </TableRow>
@@ -163,6 +167,7 @@
                         android:id="@+id/addMemo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
                         android:inputType="text" />
                 </TableRow>
             </TableLayout>
@@ -189,7 +194,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </ScrollView>
 

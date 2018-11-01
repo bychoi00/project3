@@ -100,12 +100,13 @@ public class AddActivity extends AppCompatActivity {
                         cv.put("name",AddName.getText().toString());
                         cv.put("rate",AddRate.getText().toString());
                         cv.put("decase",depositCase);
-                        cv.put("date",AddStartDay.getText().toString()+"-"+AddEndDay.getText().toString());
+                        cv.put("date",AddStartDay.getText().toString()+" ~ "+AddEndDay.getText().toString());
                         cv.put("mMoney",AddMonthMoney.getText().toString());
                         cv.put("total",AddStartMoney.getText().toString());
                         cv.put("memo",AddMemo.getText().toString());
                         db.insert("tb_deposit",null,cv);
                         Toast.makeText(getApplicationContext(), "항목이 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                        db.close();
                         finish();
                     }catch (Exception e){
                         e.printStackTrace();
