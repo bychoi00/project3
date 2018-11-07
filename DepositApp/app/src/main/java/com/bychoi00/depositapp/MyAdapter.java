@@ -1,11 +1,14 @@
 package com.bychoi00.depositapp;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,12 +28,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RecyclerItem item = Items.get(position);
+        final RecyclerItem item = Items.get(position);
 
         holder.textView1.setText(item.Deposit);
         holder.textView2.setText(item.Rate+"%");
         holder.textView3.setText(item.Dudate);
         holder.textView4.setText(MyUtils.getFormatDEC(item.Total)+"원");
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                //아이템 짧게터치 시 납부 / 세부정보 / 취소 창 뜨도록 커스텀 다이얼로그 생성
+                DialogItemClick customDialog = new DialogItemClick(context);
+                customDialog.show();
+
+            }
+        });
     }
 
 
@@ -44,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         public TextView textView2;
         public TextView textView3;
         public TextView textView4;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             textView1 = (TextView)itemView.findViewById(R.id.txtDepositName);
@@ -51,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             textView3 = (TextView)itemView.findViewById(R.id.txtDurationName);
             textView4 = (TextView)itemView.findViewById(R.id.txtTotal);
         }
+
     }
 
 }

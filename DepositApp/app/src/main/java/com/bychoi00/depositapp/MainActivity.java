@@ -1,9 +1,12 @@
 package com.bychoi00.depositapp;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.UiThread;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         items = new ArrayList<>();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     private void initListener() {
@@ -65,7 +69,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent2);
                 break;
             case R.id.buttonSendAll:
-                Toast.makeText(this,"all 클릭",Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("전체납부");
+                builder.setMessage("전체납부를 하시겠습니까?");
+                builder.setPositiveButton("아니요", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //전체납부(구현중)
+                    }
+                });
+                builder.show();
                 break;
         }
     }
@@ -89,13 +107,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             for(int i = 0 ; i < count ; i++){
                 cursor.moveToNext();
-                String name = cursor.getString(0);
-                String rate = cursor.getString(1);
-                String decase = cursor.getString(2);
-                String date = cursor.getString(3);
-                String mMoney = cursor.getString(4);
-                String total = cursor.getString(5);
-                String memo = cursor.getString(6);
+                String name = cursor.getString(1);
+                String rate = cursor.getString(2);
+                String decase = cursor.getString(3);
+                String date = cursor.getString(4);
+                String mMoney = cursor.getString(5);
+                String total = cursor.getString(6);
+                String memo = cursor.getString(7);
 
                 Log.d("---","------------------------------------------");
                 Log.d("TB_DEPOSIT",
