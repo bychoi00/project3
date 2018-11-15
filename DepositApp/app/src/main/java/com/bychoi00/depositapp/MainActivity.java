@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void select() {
 
+        int totalResult=0;
+
         try{
             //DB에 추가
             DBHelper helper = new DBHelper(getApplicationContext());
@@ -126,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 "memo : "+memo+"\n");
 
                 items.add(new RecyclerItem(name,rate,date,total));
+
+                totalResult = totalResult + Integer.parseInt(total);
             }
             myAdapter = new MyAdapter(items);
             recyclerView.setAdapter(myAdapter);
@@ -134,5 +138,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
 
+        txtResult.setText(MyUtils.getFormatDEC(String.valueOf(totalResult)));
     }
 }

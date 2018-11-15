@@ -27,7 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         final RecyclerItem item = Items.get(position);
 
         holder.textView1.setText(item.Deposit);
@@ -40,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             public void onClick(View view) {
                 Context context = view.getContext();
                 //아이템 짧게터치 시 납부 / 세부정보 / 취소 창 뜨도록 커스텀 다이얼로그 생성
-                DialogItemClick customDialog = new DialogItemClick(context);
+                DialogItemClick customDialog = new DialogItemClick(context, position);
                 customDialog.show();
 
             }

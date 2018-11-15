@@ -3,6 +3,7 @@ package com.bychoi00.depositapp;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -13,12 +14,13 @@ import android.widget.Toast;
 
 public class DialogItemClick extends Dialog implements View.OnClickListener {
 
-    private Button dialogDetail, dialogModify, dialogAdd, dialogCancel;
+    private Button dialogDetail, dialogAdd, dialogCancel;
     private EditText dialogMmoney;
+    private String position;
 
-
-    public DialogItemClick(@NonNull Context context) {
+    public DialogItemClick(@NonNull Context context, int position) {
         super(context);
+        this.position = String.valueOf(position);
     }
 
     @Override
@@ -37,12 +39,10 @@ public class DialogItemClick extends Dialog implements View.OnClickListener {
         dialogCancel = (Button) findViewById(R.id.dialog_cancel);
         dialogDetail = (Button) findViewById(R.id.dialog_detail);
         dialogMmoney = (EditText) findViewById(R.id.dialog_mMoney);
-        dialogModify = (Button) findViewById(R.id.dialog_modify);
     }
 
     private void initListener(){
         dialogAdd.setOnClickListener(this);
-        dialogModify.setOnClickListener(this);
         dialogDetail.setOnClickListener(this);
         dialogCancel.setOnClickListener(this);
     }
@@ -50,10 +50,14 @@ public class DialogItemClick extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.dialog_detail:
-                break;
-            case R.id.dialog_modify:
+                Toast.makeText(getContext(), position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(),ModiActivity.class);
+                intent.putExtra("position",position);
+                getContext().startActivity(intent);
+                dismiss();
 
                 break;
+
             case R.id.dialog_add:
 
                 break;
