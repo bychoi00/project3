@@ -21,7 +21,7 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private Button btnAdd, btnCalc, btnSendAll;
@@ -50,22 +50,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        btnAdd = (Button)findViewById(R.id.buttonAdd);
-        btnCalc = (Button)findViewById(R.id.buttonCalc);
-        btnSendAll = (Button)findViewById(R.id.buttonSendAll);
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview1);
-        txtResult = (TextView)findViewById(R.id.txtResult);
+        btnAdd = (Button) findViewById(R.id.buttonAdd);
+        btnCalc = (Button) findViewById(R.id.buttonCalc);
+        btnSendAll = (Button) findViewById(R.id.buttonSendAll);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview1);
+        txtResult = (TextView) findViewById(R.id.txtResult);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonAdd:
-                Intent intent1 = new Intent(getApplicationContext(),AddActivity.class);
+                Intent intent1 = new Intent(getApplicationContext(), AddActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.buttonCalc:
-                Intent intent2 = new Intent(this,CalcActivity.class);
+                Intent intent2 = new Intent(this, CalcActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.buttonSendAll:
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder.setPositiveButton("아니요", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        DBHelper dbHelper = new DBHelper(getApplicationContext());
                     }
                 });
                 builder.setNegativeButton("예", new DialogInterface.OnClickListener() {
@@ -91,14 +92,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        select();
+
+        //select();
+
+        DBHelper dbHelper = new DBHelper(this);
+        List data = dbHelper.getAllData();
+        myAdapter = new MyAdapter(data);
+        recyclerView.setAdapter(myAdapter);
+        total();
     }
 
-    void select() {
+    public void total(){
+        int totalResult = 0;
 
-        int totalResult=0;
+        try {
+            //DB에 추가
+            DBHelper helper = new DBHelper(getApplicationContext());
+            SQLiteDatabase db = helper.getWritableDatabase();
+            Cursor cursor = null;
+            cursor = db.rawQuery("select * from tb_deposit", null);
+            int count = cursor.getCount();
 
-        try{
+            for (int i = 0; i < count; i++) {
+                cursor.moveToNext();
+                String total = cursor.getString(6);
+                totalResult = totalResult + Integer.parseInt(total);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        txtResult.setText(MyUtils.getFormatDEC(String.valueOf(totalResult)));
+    }
+
+
+    public void select() {
+
+        int totalResult = 0;
+
+        try {
             //DB에 추가
             DBHelper helper = new DBHelper(getApplicationContext());
             SQLiteDatabase db = helper.getWritableDatabase();
@@ -107,8 +138,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int count = cursor.getCount();
             items.clear();
 
-            for(int i = 0 ; i < count ; i++){
+            for (int i = 0; i < count; i++) {
                 cursor.moveToNext();
+                String id = cursor.getString(0);
                 String name = cursor.getString(1);
                 String rate = cursor.getString(2);
                 String decase = cursor.getString(3);
@@ -117,24 +149,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String total = cursor.getString(6);
                 String memo = cursor.getString(7);
 
-                Log.d("---","------------------------------------------");
+                Log.d("---", "------------------------------------------");
                 Log.d("TB_DEPOSIT",
-                        "name : "+name+"\n"+
-                                "rate : "+rate+"\n"+
-                                "decase : "+decase+"\n"+
-                                "date : "+date+"\n"+
-                                "mMoney : "+mMoney+"\n"+
-                                "total : "+total+"\n"+
-                                "memo : "+memo+"\n");
+                        "id : " + id + "\n" +
+                                "name : " + name + "\n" +
+                                "rate : " + rate + "\n" +
+                                "decase : " + decase + "\n" +
+                                "date : " + date + "\n" +
+                                "mMoney : " + mMoney + "\n" +
+                                "total : " + total + "\n" +
+                                "memo : " + memo + "\n");
 
-                items.add(new RecyclerItem(name,rate,date,total));
+                items.add(new RecyclerItem(id, name, rate, decase, date, mMoney, total, memo));
 
                 totalResult = totalResult + Integer.parseInt(total);
             }
             myAdapter = new MyAdapter(items);
             recyclerView.setAdapter(myAdapter);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

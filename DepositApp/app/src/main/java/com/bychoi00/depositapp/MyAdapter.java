@@ -30,7 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         final RecyclerItem item = Items.get(position);
 
-        holder.textView1.setText(item.Deposit);
+        holder.textView1.setText(item.Name);
         holder.textView2.setText(item.Rate+"%");
         holder.textView3.setText(item.Dudate);
         holder.textView4.setText(MyUtils.getFormatDEC(item.Total)+"원");
